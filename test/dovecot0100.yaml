@@ -1,6 +1,5 @@
 pattern: DOVECOT
 data: "lmtp(root@localhost): Error: Invalid settings in userdb: userdb returned 0 as uid"
 results:
-        proto: "indexer"
         user: "root@localhost"
         lmtp_error: "Invalid settings in userdb: userdb returned 0 as uid"
