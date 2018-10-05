@@ -75,7 +75,10 @@ DOVECOT_EXCEEDED %{WORD:proto}-login: %{DATA:conn_status} \(%{DATA:status_messag
 # 34  lmtp(32352): Disconnect from local: Successful quit
 # 35  lmtp(32347): Connect from local
 # 36  lmtp(username): iUi8BBUI2FRbfgAAA15QOA: msgid=<E1YKcnl-0001q3-UM@example.com>: saved mail to INBOX
-DOVECOT_LMTP %{WORD:proto}\(%{USERNAME:user}\): (%{WORD:session}: )?(msgid=<%{DATA:msgid}>: )?%{GREEDYDATA:status_message}
+# 100 lmtp(root@localhost): Error: Invalid settings in userdb: userdb returned 0 as uid
+DOVECOT_LMTP_SUCCESS %{WORD:proto}\(%{USERNAME:user}\): (%{WORD:session}: )?(msgid=<%{DATA:msgid}>: )?%{GREEDYDATA:status_message}
+DOVECOT_LMTP_ERROR lmtp\((%{DATA:user})?\): Error: %{GREEDYDATA:lmtp_error}
+DOVECOT_LMTP (%{DOVECOT_LMTP_SUCCESS}|%{DOVECOT_LMTP_ERROR})
 
 ### Indexer
 # 37  indexer-worker(username): Indexed 10 messages in mail/Sent Messages
